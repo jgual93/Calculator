@@ -23,7 +23,7 @@ public class Calculator extends JFrame {
 		super();
 		Rectangle maxBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 		
-		setSize(150, 250);
+		setSize(200, 370);
 		setVisible(true);
 		setResizable(true);
 		setMaximumSize(new Dimension(maxBounds.width, maxBounds.height));
@@ -76,7 +76,7 @@ public class Calculator extends JFrame {
 		JButton buttonPlus = new JButton("+");
 		buttonPlus.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
-				temp += tf.getText()+"+";
+				temp += tf.getText();
 				tf.setText("");
 			}
 		});
@@ -102,10 +102,14 @@ public class Calculator extends JFrame {
 		final JButton equals = new JButton("=");
 		equals.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
-				//tf.setText((Double.parseDouble(tf.getText())+Double.parseDouble(temp))+"");
-				temp += tf.getText();
-				System.out.println(temp);
-			}
+				try{
+					tf.setText((Integer.parseInt(tf.getText())+Integer.parseInt(temp))+"");
+				}
+				catch(NumberFormatException c){
+					tf.setText((Double.parseDouble(tf.getText())+Double.parseDouble(temp))+"");
+					temp += tf.getText();
+				}
+			}	
 		});
 		c.gridx = 2;
 		c.gridy = 6;
@@ -124,8 +128,8 @@ public class Calculator extends JFrame {
 		c.gridy = 8;
 		c.gridwidth = 3;
 		content.add(clear, c);		
-
-		repaint();
+		
+		getContentPane().paintAll(getContentPane().getGraphics());
 	}
 	public static double add(double a, double b){
 		return a+b;
