@@ -52,6 +52,8 @@ public class Calculator extends JFrame {
 		c.gridwidth = 1;
 
 		int k = 1;
+		
+		tf.requestFocusInWindow();
 
 		for(int i=1;i<4;i++){
 			for(int j=0;j<3;j++){

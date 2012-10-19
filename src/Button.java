@@ -1,4 +1,6 @@
 import java.awt.TextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -17,6 +19,12 @@ public class Button {
 		button.addMouseListener(new MouseAdapter(){
 			public void mouseReleased(MouseEvent e){
 				getTf().setText(getTf().getText()+getVal());
+			}
+		});
+		button.addKeyListener(new KeyAdapter(){
+			public void keyReleased(KeyEvent e){
+				char c = e.getKeyChar();
+				tf.setText(tf.getText()+c);
 			}
 		});
 	}
